@@ -1,6 +1,6 @@
 ### seeker logger v0.1.0
 ---
-### 说明
+### 简介
 seeker logger 并不是一个log库，而是一个 [spdlog](https://github.com/gabime/spdlog) 库的简单封装和用法约定，以达到使用方便和代码统一的目的；  
 
 ### 安装
