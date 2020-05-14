@@ -4,7 +4,7 @@
 seeker logger 并不是一个log库，而是一个 [spdlog](https://github.com/gabime/spdlog) 库的简单封装和用法约定，以达到使用方便和代码统一的目的；  
 
 ### 安装
-- 添加h文件到你工程的include路径中
+- 将本工程include下的以下h文件拷贝到到你工程的include路径中
   - seeker/logger.h
   - seeker/loggerApi.h
   - spdlog
