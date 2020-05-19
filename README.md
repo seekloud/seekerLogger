@@ -55,3 +55,24 @@ set(SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE)
 ```
 这个配置要放在`configure_file(config.h.in config.h)` 之前
 
+
+
+### 使用独立线程来打印日志
+- `#define LOG_USE_ASYN` 通过定义这个宏，来启动独立线程打印日志
+- `#define LOG_THREAD_COUNT 2` 通这个宏，来设置打印日志的线程数量
+- 这两个宏同样可以通过上面介绍的 CMake 中 config.h.in 来进行配置
+- CMakeLists.txt内容如下
+```
+option(LOG_USE_ASYN "LOG_USE_ASYN" ON)
+set(LOG_THREAD_COUNT 2)
+```
+- config.h.in内容如下
+```
+#cmakedefine LOG_USE_ASYN
+#cmakedefine LOG_THREAD_COUNT @LOG_THREAD_COUNT@
+```
+
+
+
+
+

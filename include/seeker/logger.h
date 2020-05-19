@@ -2,7 +2,7 @@
 @project seeker
 @author Tao Zhang
 @since 2020/3/1
-@version 0.1.0 2020/5/14
+@version 0.1.1 2020/5/19
 */
 #pragma once
 #include "spdlog/spdlog.h"
@@ -15,6 +15,23 @@
 #include <string>
 #include "seeker/loggerApi.h"
 
+#ifndef LOG_FILE_NAME
+#define LOG_FILE_NAME "application.log"
+#endif  // !LOG_FILE_NAME
+
+#ifdef LOG_USE_ASYN
+#define DEFAULT_USE_AYSN true
+#else
+#define DEFAULT_USE_AYSN false
+#endif  // LOG_USE_ASYN
+
+
+#ifndef LOG_THREAD_COUNT
+#define LOG_THREAD_COUNT 1
+#endif
+
+
+
 namespace seeker {
 
 using std::string;
@@ -26,7 +43,7 @@ class Logger {
 
   Logger(const string& logFile, bool stdOutOn, bool fileOutOn, const string& pattern,
          bool useAsyn) {
-    const string defaultLogFile = "./application.log";
+    const string defaultLogFile = LOG_FILE_NAME;
     logFileName = logFile.length() > 0 ? logFile : defaultLogFile;
 
     const string defaultPattern = "[%Y%m%d %H:%M:%S.%e %s:%#] %^[%L]%$: %v";
@@ -74,9 +91,10 @@ class Logger {
   };
 
   std::shared_ptr<spdlog::async_logger> getAsyncLogger(std::vector<spdlog::sink_ptr> sinks) {
-    spdlog::init_thread_pool(1024, 1);
+    spdlog::init_thread_pool(1024, LOG_THREAD_COUNT);
     auto combined_logger = std::make_shared<spdlog::async_logger>(
         "asy_multi_sink", begin(sinks), end(sinks), spdlog::thread_pool());
+    std::cout << "Logger LOG_THREAD_COUNT=[" << LOG_THREAD_COUNT << "]" << std::endl;
     return combined_logger;
   };
 
@@ -97,8 +115,8 @@ class Logger {
     std::cout << "Logger shutdown." << std::endl;
   };
 
-  static void init(const string& logFile = "", bool useAsyn = false, bool stdOutOn = true, bool fileOutOn = true,
-                   const string& pattern = "") {
+  static void init(const string& logFile = "", bool useAsyn = DEFAULT_USE_AYSN,
+                   bool stdOutOn = true, bool fileOutOn = true, const string& pattern = "") {
     static bool inited = false;
     if (!inited) {
       static Logger instence{logFile, stdOutOn, fileOutOn, pattern, useAsyn};

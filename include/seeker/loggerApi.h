@@ -2,7 +2,7 @@
 @project seeker
 @author Tao Zhang
 @since 2020/3/1
-@version 0.1.0 2020/5/14
+@version 0.1.1 2020/5/14
 */
 #pragma once
 #include "spdlog/spdlog.h"

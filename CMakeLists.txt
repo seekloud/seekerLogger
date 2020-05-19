@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.11)
 
-project ("seekerLogger" VERSION 0.1.0)
+project ("seekerLogger" VERSION 0.1.1)
 
 
 
@@ -43,8 +43,10 @@ find_package(Threads REQUIRED)
 #  config.h.in settings
 #-------------------------------------
 
+option(LOG_USE_ASYN "LOG_USE_ASYN" ON)
 set(SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE)
 set(LOG_FILE_NAME "appliaction.log")
+set(LOG_THREAD_COUNT 1)
 
 configure_file(
 	"./cmake/config.h.in" 
