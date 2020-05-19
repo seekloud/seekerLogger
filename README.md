@@ -71,7 +71,7 @@ set(LOG_THREAD_COUNT 2)
 #cmakedefine LOG_USE_ASYN
 #cmakedefine LOG_THREAD_COUNT @LOG_THREAD_COUNT@
 ```
-
+- 注意：异步打印的话，打印顺序将无法百分之百保证，不过经过测试，基本99.99%的日志顺序还都是保证的
 
 
 
