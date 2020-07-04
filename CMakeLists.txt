@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.11)
 
-project ("seekerLogger" VERSION 0.1.1)
+project ("seekerLogger" VERSION 0.1.2)
 
 
 
