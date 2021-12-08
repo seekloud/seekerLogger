@@ -2,7 +2,7 @@
 @project seeker
 @author Tao Zhang
 @since 2020/3/1
-@version 0.1.2 2020/6/13
+@version 0.1.3 2021/12/8
 */
 #pragma once
 
@@ -20,5 +20,6 @@
 #define I_LOG(...) SPDLOG_INFO(__VA_ARGS__)
 #define W_LOG(...) SPDLOG_WARN(__VA_ARGS__)
 #define E_LOG(...) SPDLOG_ERROR(__VA_ARGS__)
+#define C_LOG(...) SPDLOG_CRITICAL(__VA_ARGS__)
 
 
